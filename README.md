@@ -1,5 +1,7 @@
 ## Hi there 👋
 
+[My Index](https://gamedev-pascal-2026.github.io/gamedev-pascal-2026/index.html)
+
 <!--
 **gamedev-pascal-2026/gamedev-pascal-2026** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
