@@ -1,5 +1,6 @@
 
-<h2 align="center">t1a10-Events-by-Fred.html</h2>
+
+<h2 align="center">t1a10-Events-by-Pascal.html</h2>
 
 <a href="https://way2tutorial.com/html/html5_events_handler_list.php">
 
@@ -30,6 +31,11 @@ You do at least 8 other events:<br>
 onClick, onDblClick, onChange, onBlur, onFocus,
 onMouseMove, onTouch, onKeyDown, onKeyPress,
 onDragStart, onTouchStart, onTouchEnd, onTouchMove
+<br></br>
+<br></br>
+
+
+<!-- 1. onDblClick -->
 
 <input type="text" id="myText02" value="Click Faster"><br>
 
@@ -38,16 +44,8 @@ onDblClick="{ document.getElementById('myDiv02').innerHTML = document.getElement
 
 <div id="myDiv02">...</div>
 
-<b id="myB03"
-onMouseOut="{
-document.getElementById('myB03').innerHTML = 'This is nice.'
-}"
 
-onMouseOver="{
-document.getElementById('myB03').innerHTML = 'This is cool.'
-}">
-This was slow
-</b>
+<!-- 2. onChange -->
 
 <input type="text" id="myText03" value="That changed"
 onChange="{ document.getElementById('myDiv03').innerHTML = document.getElementById('myText03').value }">
@@ -55,15 +53,63 @@ onChange="{ document.getElementById('myDiv03').innerHTML = document.getElementBy
 
 <div id="myDiv03">...</div>
 
-<b id="myB04"
-onMouseOut="{
-document.getElementById('myB04').innerHTML = 'This is nice.'
-}"
 
-onMouseOver="{
-document.getElementById('myB04').innerHTML = 'This is cool.'
-}">
-This was slow
-</b>
+<!-- 3. onBlur -->
 
-<input type="text" id="myText03" ... onChange="{ ... }">
+<input type="text" id="myText04" value="Click here"
+onBlur="{ document.getElementById('myDiv04').innerHTML = 'Blur happened' }">
+<br>
+
+<div id="myDiv04">...</div>
+
+
+<!-- 4. onFocus -->
+
+<input type="text" id="myText05" value="Click here"
+onFocus="{ document.getElementById('myDiv05').innerHTML = 'Focus happened' }">
+<br>
+
+<div id="myDiv05">...</div>
+
+
+<!-- 5. onMouseMove -->
+
+<div id="myDiv06"
+onMouseMove="{ document.getElementById('myDiv06').innerHTML = 'Mouse is moving' }"
+style="width:200px; height:50px; background-color:lightblue;">
+
+Move your mouse here
+
+</div>
+
+
+<!-- 6. onKeyDown -->
+
+<input type="text" id="myText07"
+onKeyDown="{ document.getElementById('myDiv07').innerHTML = 'Key Down happened' }">
+<br>
+
+<div id="myDiv07">...</div>
+
+
+<!-- 7. onDragStart -->
+
+<div id="myDiv08"
+draggable="true"
+onDragStart="{ document.getElementById('myDiv08').innerHTML = 'Drag started' }"
+style="width:200px; height:50px; background-color:lightgreen;">
+
+Drag me
+
+</div>
+
+
+<!-- 8. onTouchStart -->
+
+<div id="myDiv09"
+onTouchStart="{ document.getElementById('myDiv09').innerHTML = 'Touch started' }"
+style="width:200px; height:50px; background-color:lightyellow;">
+
+Touch me
+
+</div>
