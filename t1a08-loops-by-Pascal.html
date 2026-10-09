@@ -1,5 +1,5 @@
-<h2 align="center">t1a08-1oops-by-Pascal.html</h2>
-<a href ="">
+<h2 align="center">t1a08-1loops-by-Pascal.html</h2>
+<a href="">
 Good reference to Javascript Loops
 </a>
 <br>
@@ -32,7 +32,7 @@ let myMax = parseInt(document.getElementById('myNum01').value);
 let myWeird = parseInt(document.getElementById('myWeird').value);
 
 for (let myLoop = 0; myLoop < myMax; myLoop++) {
-    if (myLoop % myWeird === 0) {
+    if (myWeird !== 0 && myLoop % myWeird === 0) {
         myTemp += 'Cool ';
         myTemp += 'Loop number: ' + myLoop + '<br>';
     }
