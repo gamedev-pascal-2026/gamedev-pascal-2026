@@ -1,0 +1,92 @@
+
+<h2 align=center>t1a11-arrays-Pasca.html</h2>
+<a href="">Good refrence to Javascript Arrays</a>
+<h4>Example working Array code</h4>
+
+Max Array Entry: <input type=number 
+    id="myText01" value="3"><br>
+    
+<input type=button value="Example" onClick="{
+    let myTemp= document.getElementById('myText01').value
+    let mySum=''
+    document.getElementById('myDiv01').innerHTML=''
+    
+    
+    myArray = new Array()
+    myArray[0]= 'Fred'
+    myArray[1]='Mary'
+    myArray[2]='Lizzy'
+    
+    for (let myLoop=0; myLoop < myTemp; myLoop++){
+        mySum += 'Loop #: ' + myLoop + ' array entry: ' + myArray[myLoop] +'<br>'
+    }
+    document.getElementById('myDiv01').innerHTML = mySum
+}">
+
+<div id="myDiv01">...</div>
+<br>
+
+You do more arrays that do different thing,hopefully some with numbers.<br>
+<br>
+<br>
+<br>
+<br>
+
+<h4>Maximum Array</h4>
+<input type="button" value="Find Maximum" onClick="{
+    let myArray = [10, 25, 5, 40, 15]
+    let myMax = myArray[0]
+
+    for (let i = 1; i < myArray.length; i++) {
+        if (myArray[i] > myMax) {
+            myMax = myArray[i]
+        }
+    }
+
+    document.getElementById('myDiv02').innerHTML = 'Maximum: ' + myMax
+}">
+<div id="myDiv02">...</div>
+<br>
+
+<h4>Minimum Array</h4>
+<input type="button" value="Find Minimum" onClick="{
+    let myArray = [10, 25, 5, 40, 15]
+    let myMin = myArray[0]
+
+    for (let i = 1; i < myArray.length; i++) {
+        if (myArray[i] < myMin) {
+            myMin = myArray[i]
+        }
+    }
+
+    document.getElementById('myDiv03').innerHTML = 'Minimum: ' + myMin
+}">
+<div id="myDiv03">...</div>
+<br>
+
+<h4>Count Array</h4>
+<input type="button" value="Count Entries" onClick="{
+    let myArray = [10, 25, 5, 40, 15]
+
+    document.getElementById('myDiv04').innerHTML = 'Number of entries: ' + myArray.length
+}">
+<div id="myDiv04">...</div>
+<br>
+
+<h4>Multiplication Array</h4>
+<input type="button" value="Multiply Numbers" onClick="{
+    let myArray = [2, 3, 4, 5]
+    let myProduct = 1
+
+    for (let i = 0; i < myArray.length; i++) {
+        myProduct = myProduct * myArray[i]
+    }
+
+    document.getElementById('myDiv05').innerHTML = 'Product: ' + myProduct
+}">
+<div id="myDiv05">...</div>
+<br>
+
+
+    
+
