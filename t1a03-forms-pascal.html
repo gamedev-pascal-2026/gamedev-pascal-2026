@@ -31,4 +31,206 @@ Select Box:<br>
 <option value="myCat">Cat</option>
 <option value="myMouse">Mouse</option>
 </select>
+
+
+
+  
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forms & Confetti</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+
+  input, select, textarea, button {
+    margin: 5px 0;
+  }
+
+  /* Konfetti liegt über der Seite, blockiert aber keine Klicks */
+  #confettiCanvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+  }
+</style>
+</head>
+
+<body>
+
+<form onsubmit="event.preventDefault(); shootConfetti();">
+
+<h6>Version 0.01</h6>
+<h1 style="text-align:center;">t1a03-forms-pascal.html</h1>
+<h3 style="color:green;">Providing that you can use: Forms 2023</h3>
+
+First Name:
+<input type="text" id="myText01" value="Pascal">
+<br>
+
+Checkbox:<br>
+Beef:<input type="checkbox">
+Veggie:<input type="checkbox">
+<br>
+
+Radio Buttons:<br>
+95.4 <input type="radio" name="myRad01" value="95.4"><br>
+101 <input type="radio" name="myRad01" value="101"><br>
+
+Hidden:
+<input type="hidden"><br>
+
+File:
+<input type="file"><br>
+
+Reset:
+<input type="reset"><br>
+
+Submit (advanced):
+<input type="submit" value="Submit"><br>
+
+Button:
+<input type="button" value="Click" onclick="
+  document.getElementById('myArea01').value = 'Cool';
+">
+<br>
+
+Textarea:<br>
+<textarea id="myArea01" cols="60" rows="5">Cool this works</textarea>
+<br>
+
+Select Box:<br>
+<select id="mySelect01" size="2" onchange="
+  document.getElementById('myArea01').value = this.value;
+">
+  <option value="myDog">Dog</option>
+  <option value="myCat">Cat</option>
+  <option value="myMouse">Mouse</option>
+</select>
+<br><br>
+
+<button type="submit">Finished!</button>
+
+</form>
+
+<canvas id="confettiCanvas"></canvas>
+
+<script>
+function shootConfetti() {
+  const canvas = document.getElementById("confettiCanvas");
+  const ctx = canvas.getContext("2d");
+
+  // Canvas an die Bildschirmgröße anpassen
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+  canvas.width = window.innerWidth * dpr;
+  canvas.height = window.innerHeight * dpr;
+
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
+  const colors = [
+    "#ff1744",
+    "#ff9100",
+    "#ffea00",
+    "#00e676",
+    "#00b0ff",
+    "#d500f9",
+    "#ffffff"
+  ];
+
+  const particles = [];
+  const amount = 260;
+
+  // Startpunkt: unten in der Mitte des Bildschirms
+  const originX = width / 2;
+  const originY = height + 10;
+
+  // Konfetti in einer nach oben breiter werdenden Form erzeugen
+  for (let i = 0; i < amount; i++) {
+    const angle = (-Math.PI / 2) +
+                  (Math.random() - 0.5) * 1.45;
+
+    const speed = 9 + Math.random() * 14;
+
+    particles.push({
+      x: originX + (Math.random() - 0.5) * 35,
+      y: originY,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      size: 4 + Math.random() * 8,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      rotation: Math.random() * Math.PI * 2,
+      spin: (Math.random() - 0.5) * 0.25,
+      gravity: 0.12 + Math.random() * 0.13,
+      drag: 0.992,
+      life: 1
+    });
+  }
+
+  let animationId;
+  let startTime = null;
+
+  function animate(timestamp) {
+    if (startTime === null) startTime = timestamp;
+
+    const elapsed = timestamp - startTime;
+
+    ctx.clearRect(0, 0, width, height);
+
+    for (const p of particles) {
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // Luftwiderstand und Schwerkraft
+      p.vx *= p.drag;
+      p.vy = p.vy * p.drag + p.gravity;
+
+      p.rotation += p.spin;
+
+      // Konfetti verblasst gegen Ende
+      p.life = Math.max(0, 1 - elapsed / 3800);
+
+      ctx.save();
+      ctx.globalAlpha = p.life;
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rotation);
+      ctx.fillStyle = p.color;
+
+      // Kleine, rechteckige Konfettistücke
+      ctx.fillRect(
+        -p.size / 2,
+        -p.size / 2,
+        p.size,
+        p.size * 0.65
+      );
+
+      ctx.restore();
+    }
+
+    if (elapsed < 3800) {
+      animationId = requestAnimationFrame(animate);
+    } else {
+      cancelAnimationFrame(animationId);
+      ctx.clearRect(0, 0, width, height);
+    }
+  }
+
+  requestAnimationFrame(animate);
+}
+</script>
+
+</body>
+</html>
+
 </form>
