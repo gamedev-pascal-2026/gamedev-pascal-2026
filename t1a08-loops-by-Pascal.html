@@ -1,3 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Loops - Pascal</title>
+
+    <style>
+        .newLoopSection {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+            max-width: 750px;
+            margin: 30px auto;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .newLoopSection h2 {
+            text-align: center;
+            color: #2563eb;
+        }
+
+        .newLoopSection .container {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px #00000015;
+        }
+
+        .newLoopSection input {
+            padding: 9px;
+            margin: 8px 0 15px;
+            width: 90px;
+        }
+
+        .newLoopSection button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 11px 14px;
+            margin: 5px 3px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .newLoopSection button:hover {
+            background: #1d4ed8;
+        }
+
+        #newDiv01 {
+            background: #eff6ff;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+            line-height: 1.8;
+            overflow-wrap: anywhere;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ORIGINAL CODE: UNCHANGED -->
+
 <h2 align="center">t1a08-1loops-by-Pascal.html</h2>
 <a href="">
 Good reference to Javascript Loops
@@ -62,3 +129,157 @@ document.getElementById('myDiv01').innerHTML = myTemp;
 <div id="myDiv01">
     <font color="red">...</font>
 </div>
+
+
+<!-- NEW IMPROVED CODE BELOW -->
+
+<hr>
+
+<section class="newLoopSection">
+
+    <div class="container">
+
+        <h2>JavaScript Loop Playground</h2>
+
+        <p>
+            Experiment with for-loops and discover
+            different numbers.
+        </p>
+
+        <h3>Settings</h3>
+
+        <label for="newNum01">Max loops:</label>
+        <input id="newNum01" type="number"
+               value="10" min="0" max="500">
+
+        <br>
+
+        <label for="newWeird">Weird number:</label>
+        <input id="newWeird" type="number"
+               value="2" min="1" max="500">
+
+        <br>
+
+        <button onclick="newBasicLoop()">Basic Loop</button>
+        <button onclick="newEvenNumbers()">Even Numbers</button>
+        <button onclick="newOddNumbers()">Odd Numbers</button>
+        <button onclick="newCountdown()">Countdown</button>
+        <button onclick="newMultiplication()">Multiplication Table</button>
+
+        <div id="newDiv01" aria-live="polite">Results appear here...</div>
+
+    </div>
+
+</section>
+
+<script>
+    function newGetMax() {
+        const value = document.getElementById('newNum01').value;
+        const max = Number(value);
+
+        if (value.trim() === '' ||
+            !Number.isInteger(max) ||
+            max < 0 || max > 500) {
+            newShowResult('Enter a whole number between 0 and 500.');
+            return null;
+        }
+
+        return max;
+    }
+
+    function newGetWeird() {
+        const value = document.getElementById('newWeird').value;
+        const num = Number(value);
+
+        if (value.trim() === '' ||
+            !Number.isInteger(num) ||
+            num < 1 || num > 500) {
+            newShowResult('Weird number must be between 1 and 500.');
+            return null;
+        }
+
+        return num;
+    }
+
+    function newShowResult(text) {
+        document.getElementById('newDiv01').textContent = text;
+    }
+
+    function newBasicLoop() {
+        const max = newGetMax();
+        const weird = newGetWeird();
+
+        if (max === null || weird === null) return;
+
+        let result = '';
+
+        for (let i = 0; i < max; i++) {
+            if (i % weird === 0) {
+                result += 'Cool! Loop number: ' + i + '\n';
+            }
+        }
+
+        newShowResult(result || 'No results.');
+    }
+
+    function newEvenNumbers() {
+        const max = newGetMax();
+        if (max === null) return;
+
+        let result = '';
+
+        for (let i = 0; i < max; i++) {
+            if (i % 2 === 0) {
+                result += i + ' is even\n';
+            }
+        }
+
+        newShowResult(result || 'No results.');
+    }
+
+    function newOddNumbers() {
+        const max = newGetMax();
+        if (max === null) return;
+
+        let result = '';
+
+        for (let i = 0; i < max; i++) {
+            if (i % 2 !== 0) {
+                result += i + ' is odd\n';
+            }
+        }
+
+        newShowResult(result || 'No results.');
+    }
+
+    function newCountdown() {
+        const max = newGetMax();
+        if (max === null) return;
+
+        let result = '';
+
+        for (let i = max; i >= 0; i--) {
+            result += i + '\n';
+        }
+
+        newShowResult(result);
+    }
+
+    function newMultiplication() {
+        const max = newGetMax();
+        const num = newGetWeird();
+
+        if (max === null || num === null) return;
+
+        let result = '';
+
+        for (let i = 1; i <= max; i++) {
+            result += num + ' x ' + i + ' = ' + (num * i) + '\n';
+        }
+
+        newShowResult(result || 'No results.');
+    }
+</script>
+
+</body>
+</html>
