@@ -1,3 +1,4 @@
+
 <h2 align=center>t1a05-input output by Pascal.html</h2>
 <a href="https://www.w3schools.com/jsref/prop_html_innerhtml.asp">Good reference to
 input output
@@ -20,3 +21,117 @@ document.getElementById('myDiv01').innerHTML = myIn01 + ' squared = ' + myAnswer
 }"><br>
 
 <div id="myDiv01">...</div>
+
+<hr style="border: 0; height: 3px; background-color: #2563eb; margin: 30px 0;">
+
+
+<h2 align="center">t1a05-input-output-by-Pascal.html</h2>
+
+<a href="https://www.w3schools.com/jsref/prop_html_innerhtml.asp"
+   target="_blank">
+    Good reference to JavaScript Input and Output
+</a>
+
+<h4>Example input output code</h4>
+
+<pre>
+let myIn01 = document.getElementById('myNum01').value;
+document.getElementById('myDiv01').textContent = 'Hi';
+</pre>
+
+<h4>Example working code</h4>
+
+<label for="myNum01">Enter a number:</label>
+<input id="myNum01" type="number" value="4">
+
+<br><br>
+
+<input type="button" value="Calculate Square"
+       style="background-color: lightyellow;"
+       onclick="calculateSquare()">
+
+<input type="button" value="Calculate Cube"
+       style="background-color: lightgreen;"
+       onclick="calculateCube()">
+
+<input type="button" value="Square Root"
+       style="background-color: orange;"
+       onclick="calculateRoot()">
+
+<input type="button" value="Double"
+       style="background-color: violet;"
+       onclick="doubleNumber()">
+
+<input type="button" value="Clear"
+       style="background-color: lightcoral;"
+       onclick="document.getElementById('myDiv01').textContent = 'Result appears here.'">
+
+<input type="button" value="Clear"
+       onclick="document.getElementById('myDiv01').textContent = 'Result appears here.'">
+
+<br><br>
+
+<div id="myDiv01"
+     style="background-color: lightblue; padding: 15px;">
+    Result appears here.
+</div>
+
+<script>
+function getNumber() {
+    let value = document.getElementById('myNum01').value;
+
+    if (value.trim() === '') {
+        document.getElementById('myDiv01').textContent =
+            'Please enter a number.';
+        return null;
+    }
+
+    return Number(value);
+}
+
+function calculateSquare() {
+    let num = getNumber();
+    if (num === null) return;
+
+    let answer = num * num;
+
+    document.getElementById('myDiv01').textContent =
+        num + ' squared = ' + answer;
+}
+
+function calculateCube() {
+    let num = getNumber();
+    if (num === null) return;
+
+    let answer = num * num * num;
+
+    document.getElementById('myDiv01').textContent =
+        num + ' cubed = ' + answer;
+}
+
+function calculateRoot() {
+    let num = getNumber();
+    if (num === null) return;
+
+    if (num < 0) {
+        document.getElementById('myDiv01').textContent =
+            'Please enter a non-negative number for the square root.';
+        return;
+    }
+
+    let answer = Math.sqrt(num);
+
+    document.getElementById('myDiv01').textContent =
+        'Square root of ' + num + ' = ' + answer;
+}
+
+function doubleNumber() {
+    let num = getNumber();
+    if (num === null) return;
+
+    let answer = num * 2;
+
+    document.getElementById('myDiv01').textContent =
+        'Double of ' + num + ' = ' + answer;
+}
+</script>
