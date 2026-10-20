@@ -27,4 +27,68 @@ Nothing: <input type=text id="myTex01" value="Useless at the moment"><br>
 <b> Lets talk local and global variables, why might it be best to declare the object in the script tag
 </b>
 
-<p>Answer: It might be best to declare the object in the script tag if you want to use it in different functions. A global object can be accessed from different parts of the script, while a local object can only be used inside the function or block where it is declared.</p>
+<p></p>Answer: It might be best to declare the object in the script tag if you want to use it in different functions. A global object can be accessed from different parts of the script, while a local object can only be used inside the function or block where it is declared.</p>
+</b>
+
+<!-- ====================================== -->
+<!-- SEPARATOR: IMPROVED VERSION STARTS HERE -->
+<!-- ====================================== -->
+
+<hr style="border: 0; height: 5px; background-color: #24527a;">
+
+<div style="background-color: #eaf2f8; padding: 25px; border-radius: 12px; font-family: Arial; color: #243447;">
+
+    <h2 style="color: #24527a;">Improved JavaScript Objects</h2>
+
+    <p>
+        JavaScript objects store named values called properties.
+        This example shows how to create an object and display its information.
+    </p>
+
+    <script>
+        // Global object: accessible by different functions
+        let improvedPerson = {
+            firstName: 'John',
+            lastName: 'Doe',
+            age: 50,
+            eyeColor: 'blue'
+        };
+
+        function showImprovedPerson() {
+            document.getElementById('improvedDiv').innerHTML =
+                '<h3>Person Information</h3>' +
+                '<p><b>First Name:</b> ' + improvedPerson.firstName + '</p>' +
+                '<p><b>Last Name:</b> ' + improvedPerson.lastName + '</p>' +
+                '<p><b>Age:</b> ' + improvedPerson.age + '</p>' +
+                '<p><b>Eye Color:</b> ' + improvedPerson.eyeColor + '</p>';
+        }
+    </script>
+
+    <h3>Example: Show an Object</h3>
+
+    <button onclick="showImprovedPerson()"
+        style="background-color: #24527a; color: white; padding: 12px 20px; border: none; border-radius: 6px; cursor: pointer;">
+        Show Person Information
+    </button>
+
+    <div id="improvedDiv"
+        style="background-color: white; margin-top: 15px; padding: 15px; border-radius: 8px;">
+        Click the button to display the person.
+    </div>
+
+    <hr style="border: 0; height: 2px; background-color: #b7c9d6; margin-top: 25px;">
+
+    <h3 style="color: #24527a;">Local and Global Variables</h3>
+
+    <p>
+        A global object can be accessed by different functions.
+        A local variable can only be used inside the function or block
+        where it is declared.
+    </p>
+
+    <p>
+        <b>Answer:</b> It can be useful to declare an object in the script tag
+        so that different functions can use it without creating the object again.
+    </p>
+
+</div>
