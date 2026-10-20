@@ -1,0 +1,30 @@
+
+<h2 align=center>t1a012-objects-by-Pascal.html</h2>
+<script>
+// What might be a good idea to declare here?
+</script>
+<a href="">Good reference to JavaScript Objects (you find one)</a><br>
+Objects are good stored named variables
+<h4> Example working Objects code </h4>
+Nothing: <input type=text id="myTex01" value="Useless at the moment"><br>
+
+<input type=button value="Example Object Set and Show" onClick="{
+    let myPerson ={
+        'firstName': 'John',
+        'lastName' : 'Doe',
+        'age'      : 50,
+        'eyeColor' : 'blue'
+    }
+    
+      document.getElementById('myDiv01').innerHTML = '<br> myPerson Object has properties: <br>';
+      document.getElementById('myDiv01').innerHTML += 'firstName: '+myPerson.firstName +
+    '<br>';
+       document.getElementById('myDiv01').innerHTML += 'You do others <br> ';
+}">
+
+<div id="myDiv01">...</div>
+
+<b> Lets talk local and global variables, why might it be best to declare the object in the script tag
+</b>
+
+<p>Answer: It might be best to declare the object in the script tag if you want to use it in different functions. A global object can be accessed from different parts of the script, while a local object can only be used inside the function or block where it is declared.</p>
