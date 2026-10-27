@@ -1,0 +1,63 @@
+
+<head>
+<script>
+// STEP 1: Create the hero object
+let myHero = {
+    name: 'Captain Code',
+    power: 100,
+    comment: 'Ready for training!'
+};
+
+// STEP 2: Train the hero
+function trainHero() {
+
+    // Subtract 10 power
+    myHero.power = myHero.power - 10;
+
+    // Check the remaining power
+    if (myHero.power <= 0) {
+        alert('Your hero is exhausted! Power is resetting.');
+
+        myHero.comment = 'Hero fainted! Power restored!';
+        myHero.power = 100;
+
+    } else if (myHero.power >= 70) {
+        myHero.comment = 'High power! Keep going!';
+
+    } else if (myHero.power >= 40) {
+        myHero.comment = 'Medium power. Good training!';
+
+    } else {
+        myHero.comment = 'Low power! Your hero needs rest!';
+    }
+}
+</script>
+</head>
+
+<body>
+
+<h2 align="center">Stateful Hero Energy Tracker</h2>
+
+Student Name:Pascal
+Date: 27.10.2026
+<br><br>
+
+<input type="button"
+       value="Train Hero (-10 Power)"
+       onclick="
+           trainHero();
+
+           document.getElementById('myDiv01').innerHTML =
+               'Hero Name: ' + myHero.name +
+               '<br>Remaining Power: ' + myHero.power +
+               '<br>Coach\'s Comment: ' + myHero.comment;
+       ">
+
+<br><br>
+
+<div id="myDiv01">
+    Click the button above to begin training!
+    Initial Power: 100
+</div>
+
+</body>
