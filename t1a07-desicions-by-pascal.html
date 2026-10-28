@@ -1,12 +1,15 @@
-Version 0.0.1
-<h2 align="center">t1a07-decision-by-Pascal.html</h2>
-<a href="https://www.w3schools.com/js/js_if_else.asp">Good reference to Decisions if
-... else statements
-Javascript innerHTML value by Pascsl</a><br>
 
-Note: = Not, && = AND,
+<!-- ORIGINAL CODE -->
+<h2 align="center">t1a07-decision-by-Pascal.html</h2>
+
+<a href="https://www.w3schools.com/js/js_if_else.asp">
+    Good reference to Decisions if...else statements
+</a>
+
+<br>
 
 <h4>Example input output code</h4>
+
 <pre>
 let myHour = 20
 if (myHour < 18) {
@@ -16,32 +19,266 @@ if (myHour < 18) {
 
 <h4>Example working code</h4>
 
-<input id="myNum01" type="number" value="4">
-<br>
+<!-- Hier kommt dein kompletter unveränderter Original-Code hin -->
+<!-- Also deine Eingabefelder, Buttons und myDiv01 -->
 
-<input type="button" value="Simple if Statement for Decision Making" onclick="{
-let myIn01 = parseFloat(document.getElementById('myNum01').value)
-if (myIn01 >= 3){
-document.getElementById('myDiv01').innerHTML = myIn01 + ' is greater than 3'
-}
-}">
+<hr style="border: 0; height: 3px; background-color: #1769aa; margin: 30px 0;">
 
-<input type="button" value="if...else" onclick="{
-let myIn01 = parseFloat(document.getElementById('myNum01').value)
-if (myIn01 >= 3){
-document.getElementById('myDiv01').innerHTML = myIn01 + ' is greater than 3'
-} else {
-document.getElementById('myDiv01').innerHTML = myIn01 + ' is less than 3'
-}
-}">
+<!-- VERBESSERTER CODE -->
+<h2 align="center">Improved Version - Decision Making</h2>
 
-<input type="button" value="Complex if" onclick="{
-let myIn01 = parseFloat(document.getElementById('myNum01').value)
-if ((myIn01 != 3 || myIn01 > -3) && myIn01 <= 100 ){
-document.getElementById('myDiv01').innerHTML = myIn01 + ' is complex'
-} else {
-document.getElementById('myDiv01').innerHTML = myIn01 + ' is not complex'
-}
-}">
+<p>
+    This version includes explanations for if, else,
+    else if and complex conditions.
+</p>
 
-<div id="myDiv01">...</div>
+<!-- Hier kommt dein verbesserter Code hin -->
+<!-- Zum Beispiel das neue Eingabefeld, die vier Buttons,
+     das Ergebnisfeld und die JavaScript-Funktionen -->
+
+
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Decision Making by Pascal</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            color: #222;
+            max-width: 750px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #1769aa;
+        }
+
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px #00000015;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            margin: 10px 0 15px;
+            border: 1px solid #bbb;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #1769aa;
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            margin: 5px 3px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background-color: #0d4778;
+        }
+
+        #myDiv01 {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f3ff;
+            border-left: 5px solid #1769aa;
+            border-radius: 5px;
+            min-height: 24px;
+            line-height: 1.6;
+        }
+
+        .info {
+            color: #555;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Decision Making by Pascal</h2>
+
+        <p>
+            Learn JavaScript decisions using
+            <a href="https://www.w3schools.com/js/js_if_else.asp"
+               target="_blank" rel="noopener noreferrer">
+                if, else and logical operators
+            </a>
+        </p>
+
+        <p class="info">
+            <code>!</code> = NOT,
+            <code>&amp;&amp;</code> = AND,
+            <code>||</code> = OR
+        </p>
+
+        <h3>Enter a number</h3>
+
+        <label for="myNum01">Your number:</label>
+        <input id="myNum01" type="number" value="4" step="any">
+
+        <button onclick="simpleIf()">Simple if</button>
+        <button onclick="ifElse()">if...else</button>
+        <button onclick="complexIf()">Complex if</button>
+        <button onclick="gradeCheck()">Else if Statement</button>
+
+        <div id="myDiv01" aria-live="polite">
+            Enter a number and choose a test.
+        </div>
+    </div>
+
+    <script>
+        // Read and validate the input number
+        function getNumber() {
+            const input = document.getElementById("myNum01");
+
+            const result = input.value.trim() === ""
+                ? NaN
+                : Number(input.value);
+
+            if (!Number.isFinite(result)) {
+                document.getElementById("myDiv01").textContent =
+                    "Please enter a valid number.";
+                return null;
+            }
+
+            return result;
+        }
+
+        // Example 1: Simple if statement
+        function simpleIf() {
+            const num = getNumber();
+            if (num === null) return;
+
+            if (num >= 3) {
+                document.getElementById("myDiv01").textContent =
+                    num + " is greater than or equal to 3.";
+            } else {
+                document.getElementById("myDiv01").textContent =
+                    "The number must be at least 3.";
+            }
+        }
+
+        // Example 2: if...else statement
+        function ifElse() {
+            const num = getNumber();
+            if (num === null) return;
+
+            let result = "";
+            let explanation = "";
+
+            if (num >= 3) {
+                result = num + " is greater than or equal to 3.";
+                explanation =
+                    "The condition num >= 3 is true because your number " +
+                    "is at least 3. JavaScript executes the if block.";
+            } else {
+                result = num + " is less than 3.";
+                explanation =
+                    "The condition num >= 3 is false because your number " +
+                    "is less than 3. JavaScript executes the else block.";
+            }
+
+            document.getElementById("myDiv01").innerHTML =
+                "<strong>Result:</strong> " + result +
+                "<hr>" +
+                "<strong>Why does this result appear?</strong>" +
+                "<p>" + explanation + "</p>" +
+                "<strong>How does if...else work?</strong>" +
+                "<p><b>if:</b> Checks whether a condition is true.</p>" +
+                "<p><b>else:</b> Runs when the if condition is false.</p>";
+        }
+
+        // Example 3: Complex if statement
+        function complexIf() {
+            const num = getNumber();
+            if (num === null) return;
+
+            let result = "";
+            let explanation = "";
+
+            if (num !== 3 && num > -3 && num <= 100) {
+                result = num + " meets the complex condition.";
+                explanation =
+                    "All three conditions are true: the number is not 3, " +
+                    "it is greater than -3, and it is at most 100.";
+            } else {
+                result = num + " does not meet the complex condition.";
+                explanation =
+                    "At least one condition is false. The number must not " +
+                    "be 3, must be greater than -3, and must be at most 100.";
+            }
+
+            document.getElementById("myDiv01").innerHTML =
+                "<strong>Result:</strong> " + result +
+                "<hr>" +
+                "<strong>Why does this result appear?</strong>" +
+                "<p>" + explanation + "</p>" +
+                "<p><b>&amp;&amp; means AND:</b> All conditions must be true.</p>";
+        }
+
+        // Example 4: if...else if...else statement
+        function gradeCheck() {
+            const num = getNumber();
+            if (num === null) return;
+
+            let result = "";
+            let explanation = "";
+
+            if (num >= 90) {
+                result = "Excellent!";
+                explanation =
+                    "Your number is 90 or higher, so the first if condition " +
+                    "is true. JavaScript displays Excellent! and skips the " +
+                    "remaining conditions.";
+            } else if (num >= 70) {
+                result = "Good!";
+                explanation =
+                    "Your number is below 90, so the first condition is false. " +
+                    "However, your number is 70 or higher, so the first else if " +
+                    "condition is true. JavaScript displays Good!.";
+            } else if (num >= 50) {
+                result = "Passed!";
+                explanation =
+                    "Your number is below 90 and below 70, so the first two " +
+                    "conditions are false. Your number is at least 50, so the " +
+                    "next else if condition is true. JavaScript displays Passed!.";
+            } else {
+                result = "Not passed.";
+                explanation =
+                    "Your number is below 50. The conditions num >= 90, " +
+                    "num >= 70, and num >= 50 are all false. Therefore, " +
+                    "JavaScript executes the else block and displays Not passed.";
+            }
+
+            document.getElementById("myDiv01").innerHTML =
+                "<strong>Result:</strong> " + num + " points: " + result +
+                "<hr>" +
+                "<strong>Why does this result appear?</strong>" +
+                "<p>" + explanation + "</p>" +
+                "<strong>How does if...else if...else work?</strong>" +
+                "<p><b>if:</b> Checks the first condition.</p>" +
+                "<p><b>else if:</b> Checks another condition only if the " +
+                "previous conditions were false.</p>" +
+                "<p><b>else:</b> Runs when none of the previous conditions " +
+                "are true.</p>";
+        }
+    </script>
+</body>
+</html>
