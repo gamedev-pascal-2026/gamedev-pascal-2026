@@ -1,3 +1,8 @@
+
+<body>
+
+<!-- Original Code -->
+
 <script>
 function myExampleFunction(){
     let myIn01 = parseInt(document.getElementById("myText01").value)
@@ -6,25 +11,120 @@ function myExampleFunction(){
     return myReply
 }
 </script>
+
 <h2 align="center">t1a09-functions-by-Pascal.html</h2>
-<a href="https://www.w3schools.com/js/js_functions.asp">Good reference to Javascript functions</a><br>
+
+<a href="https://www.w3schools.com/js/js_functions.asp">
+Good reference to Javascript functions
+</a>
+<br>
+
 Functions are used to sensibly organize code. Then they are "Called" elsewhere.
 Information can also be passed to functions (that's more advanced).
 
 <h4>Example working code</h4>
-<input type=text id="myText01" value="3"><br>
 
-<input type=button value="Function Example" onClick="{
+<input type="text" id="myText01" value="3"><br>
+
+<input type="button" value="Function Example" onclick="{
     document.getElementById('myDiv01').innerHTML = myExampleFunction()
 }">
+
 <div id="myDiv01">...</div>
 
 
+<hr style="border: 0; height: 3px; background-color: #2563eb; margin: 30px 0;">
 
 
+<!-- Improved Code -->
 
+<div style="background-color: lightblue; padding: 20px; border-radius: 10px;">
 
+<h2 align="center">t1a09-functions-by-Pascal.html - Improved</h2>
 
+<a href="https://www.w3schools.com/js/js_functions.asp" target="_blank">
+Javascript Functions Reference
+</a>
 
+<p>
+Functions help organize code and make it easier to use the same code again.
+Here are some more examples of Javascript functions.
+</p>
 
+<h4>Example working code</h4>
 
+<label>Enter a number:</label><br>
+<input type="number" id="myText02" value="3">
+
+<br><br>
+
+<input type="button" value="Add Number"
+style="background-color: lightyellow; padding: 8px;"
+onclick="addNumber()">
+
+<input type="button" value="Multiply Number"
+style="background-color: lightgreen; padding: 8px;"
+onclick="multiplyNumber()">
+
+<input type="button" value="Square Number"
+style="background-color: violet; padding: 8px;"
+onclick="squareNumber()">
+
+<input type="button" value="Clear"
+style="background-color: lightcoral; padding: 8px;"
+onclick="document.getElementById('myDiv02').innerHTML = 'Result appears here.'">
+
+<br><br>
+
+<div id="myDiv02" style="background-color: white; padding: 15px; border-radius: 8px;">
+Result appears here.
+</div>
+
+<script>
+
+function getMyNumber() {
+    let value = document.getElementById("myText02").value;
+
+    if (value.trim() === "") {
+        document.getElementById("myDiv02").innerHTML = "Please enter a number.";
+        return null;
+    }
+
+    return Number(value);
+}
+
+function addNumber() {
+    let num = getMyNumber();
+    if (num === null) return;
+
+    let answer = num + num;
+
+    document.getElementById("myDiv02").innerHTML =
+        num + " + " + num + " = " + answer;
+}
+
+function multiplyNumber() {
+    let num = getMyNumber();
+    if (num === null) return;
+
+    let answer = num * num;
+
+    document.getElementById("myDiv02").innerHTML =
+        num + " x " + num + " = " + answer;
+}
+
+function squareNumber() {
+    let num = getMyNumber();
+    if (num === null) return;
+
+    let answer = num * num;
+
+    document.getElementById("myDiv02").innerHTML =
+        "The square of " + num + " = " + answer;
+}
+
+</script>
+
+</div>
+
+</body>
