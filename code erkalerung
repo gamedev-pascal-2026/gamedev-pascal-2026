@@ -1,0 +1,561 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Code Schritt für Schritt erklärt</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #202b40;
+            color: white;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffd166;
+        }
+
+        #box {
+            background-color: #34445f;
+            padding: 25px;
+            border-radius: 15px;
+            max-width: 850px;
+            margin: auto;
+        }
+
+        #code {
+            background-color: #151c29;
+            padding: 20px;
+            border-radius: 10px;
+            white-space: pre-wrap;
+            color: #7ee787;
+            font-family: monospace;
+            font-size: 15px;
+        }
+
+        #explanation {
+            font-size: 18px;
+            line-height: 1.6;
+            min-height: 100px;
+        }
+
+        button {
+            padding: 12px 20px;
+            margin: 10px 5px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        #next {
+            background-color: #06d6a0;
+        }
+
+        #back {
+            background-color: #ffd166;
+        }
+
+        #progress {
+            color: #ffd166;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Tom and Jerry Game – Code Erklärung</h1>
+
+<div id="box">
+
+    <h2 id="title">Schritt 1</h2>
+
+    <p id="progress"></p>
+
+    <h3>Code:</h3>
+
+    <div id="code"></div>
+
+    <h3>Erklärung:</h3>
+
+    <p id="explanation"></p>
+
+    <button id="back" onclick="previousStep()">
+        Zurück
+    </button>
+
+    <button id="next" onclick="nextStep()">
+        Weiter
+    </button>
+
+</div>
+
+<script>
+
+// Alle Erklärungen werden hier gespeichert
+
+let steps = [
+
+{
+    title: "HTML Grundgerüst",
+
+    code: `<!DOCTYPE html>
+<html>
+<head>
+<title>Tom and Jerry Game</title>
+</head>
+<body>`,
+
+    explanation: `Dieser Code ist das Grundgerüst der HTML-Seite.
+
+<!DOCTYPE html> sagt dem Browser, dass HTML5 verwendet wird.
+
+<html> beginnt die HTML-Seite.
+
+<head> enthält Informationen über die Webseite.
+
+<title> bestimmt den Namen des Browser-Tabs.
+
+<body> enthält alles, was auf der Webseite angezeigt wird.`
+},
+
+{
+    title: "Überschrift",
+
+    code: `<h1 align=center>
+t2a18-game-template-Pascal
+</h1>`,
+
+    explanation: `Mit <h1> erstellt man eine große Überschrift.
+
+align=center richtet die Überschrift mittig aus.
+
+Der Text zwischen den beiden h1-Tags wird angezeigt.
+
+</h1> beendet die Überschrift.`
+},
+
+{
+    title: "CSS – Hintergrund",
+
+    code: `body {
+    background-image: url('bild.png');
+    background-repeat: repeat-x;
+    background-size: auto 500px;
+    background-position: 0px 0px;
+    overflow: hidden;
+    font-family: Arial;
+}`,
+
+    explanation: `Hier wird das Aussehen der Webseite festgelegt.
+
+background-image fügt ein Hintergrundbild ein.
+
+background-repeat: repeat-x wiederholt das Bild horizontal.
+
+background-size bestimmt die Größe des Hintergrundbildes.
+
+background-position legt die Position fest.
+
+overflow: hidden verhindert, dass überstehende Inhalte angezeigt werden.
+
+font-family: Arial bestimmt die Schriftart.`
+},
+
+{
+    title: "CSS – Überschrift und Punktestand",
+
+    code: `h1 {
+    text-align: center;
+    color: white;
+}
+
+#myScore {
+    color: white;
+}`,
+
+    explanation: `Dieser CSS-Code verändert die Darstellung.
+
+text-align: center richtet die Überschrift mittig aus.
+
+color: white macht den Text weiß.
+
+#myScore spricht das HTML-Element mit der ID myScore an.
+
+Das Zeichen # wird in CSS für IDs verwendet.`
+},
+
+{
+    title: "Game Area",
+
+    code: `<div id="gameArea">
+</div>`,
+
+    explanation: `div erstellt einen Bereich auf der Webseite.
+
+id="gameArea" gibt diesem Bereich einen eindeutigen Namen.
+
+In diesem Bereich befinden sich später Tom und Jerry.
+
+Die gameArea ist also der Spielbereich.`
+},
+
+{
+    title: "Jerry anzeigen",
+
+    code: `<img id="myImg01"
+style="position:absolute;
+width:100px;
+height:100px;
+top:100px;
+left:50px;"
+src="jerry.png">`,
+
+    explanation: `Mit img wird ein Bild eingefügt.
+
+id="myImg01" gibt Jerry einen eindeutigen Namen.
+
+position:absolute ermöglicht es, Jerry frei zu positionieren.
+
+width und height bestimmen die Größe des Bildes.
+
+top bestimmt den Abstand von oben.
+
+left bestimmt den Abstand von links.
+
+src enthält den Link zum Bild von Jerry.`
+},
+
+{
+    title: "Tom anzeigen",
+
+    code: `<img id="myImg02"
+style="position:absolute;
+width:100px;
+height:100px;
+top:100px;
+left:350px;"
+src="tom.png">`,
+
+    explanation: `Hier wird Tom eingefügt.
+
+Der Code funktioniert ähnlich wie bei Jerry.
+
+myImg02 ist die ID von Tom.
+
+Tom ist ebenfalls 100 Pixel breit und 100 Pixel hoch.
+
+Mit left:350px startet Tom weiter rechts als Jerry.
+
+Dadurch haben beide Figuren unterschiedliche Startpositionen.`
+},
+
+{
+    title: "Buttons",
+
+    code: `<button onclick="myMoveRight()">
+Move Jerry Right
+</button>`,
+
+    explanation: `Mit button wird ein Knopf erstellt.
+
+onclick bedeutet, dass eine Funktion ausgeführt wird, wenn man auf den Knopf klickt.
+
+myMoveRight() ist die Funktion, die Jerry nach rechts bewegt.
+
+Die anderen Buttons funktionieren nach demselben Prinzip.`
+},
+
+{
+    title: "Globale Variablen",
+
+    code: `let myGlobalX = 0;
+let myClock;
+let myScore = 0;`,
+
+    explanation: `Hier werden drei globale Variablen erstellt.
+
+myGlobalX speichert die Position des Hintergrundes.
+
+myClock speichert den Timer für die automatische Bewegung.
+
+myScore speichert die aktuelle Punktzahl.
+
+let erstellt eine Variable, deren Wert später verändert werden kann.`
+},
+
+{
+    title: "Kollision erkennen",
+
+    code: `function myHitOther(my1, my2) {
+
+    let img1 = document.getElementById(my1);
+    let img2 = document.getElementById(my2);
+
+    let rect1 = img1.getBoundingClientRect();
+    let rect2 = img2.getBoundingClientRect();
+
+    return (
+        rect1.right >= rect2.left &&
+        rect1.bottom >= rect2.top &&
+        rect1.left <= rect2.right &&
+        rect1.top <= rect2.bottom
+    );
+}`,
+
+    explanation: `Diese Funktion überprüft, ob sich zwei Bilder berühren.
+
+getElementById sucht die Bilder anhand ihrer IDs.
+
+getBoundingClientRect() ermittelt die Position und Größe der Bilder.
+
+Die vier Bedingungen überprüfen, ob sich die Rechtecke überschneiden.
+
+return gibt das Ergebnis zurück:
+
+true bedeutet: Die Bilder berühren sich.
+
+false bedeutet: Die Bilder berühren sich nicht.`
+},
+
+{
+    title: "Kollision überprüfen",
+
+    code: `function myCheckHit() {
+
+    if (myHitOther('myImg01', 'myImg02')) {
+
+        clearInterval(myClock);
+
+        alert('You lose! Tom caught Jerry!');
+
+        myScore = 0;
+
+    }
+}`,
+
+    explanation: `Diese Funktion prüft, ob Tom Jerry gefangen hat.
+
+if bedeutet: Wenn eine Bedingung erfüllt ist.
+
+myHitOther überprüft die Kollision.
+
+clearInterval stoppt die automatische Hintergrundbewegung.
+
+alert zeigt eine Nachricht an.
+
+myScore = 0 setzt die Punkte wieder auf null.
+
+Danach werden im vollständigen Code auch die Figuren zurückgesetzt und der Punktestand aktualisiert.`
+},
+
+{
+    title: "Jerry nach rechts bewegen",
+
+    code: `function myMoveRight() {
+
+    let jerry = document.getElementById('myImg01');
+
+    jerry.style.left =
+    (parseInt(jerry.style.left) + 10) + 'px';
+
+    myScore++;
+
+    document.getElementById('myScore').innerHTML =
+    'Score: ' + myScore;
+
+    myCheckHit();
+}`,
+
+    explanation: `Diese Funktion bewegt Jerry nach rechts.
+
+document.getElementById findet Jerry.
+
+parseInt wandelt die Positionsangabe in eine Zahl um.
+
++ 10 erhöht seine Position um 10 Pixel.
+
+'px' gibt an, dass es sich um Pixel handelt.
+
+myScore++ erhöht den Punktestand um einen Punkt.
+
+innerHTML aktualisiert die Anzeige des Punktestandes.
+
+myCheckHit überprüft danach, ob Jerry Tom berührt hat.`
+},
+
+{
+    title: "Tom nach links bewegen",
+
+    code: `function myMoveLeft() {
+
+    let tom = document.getElementById('myImg02');
+
+    tom.style.left =
+    (parseInt(tom.style.left) - 10) + 'px';
+
+    myCheckHit();
+}`,
+
+    explanation: `Diese Funktion bewegt Tom nach links.
+
+Zuerst wird Tom anhand seiner ID gesucht.
+
+parseInt liest seine aktuelle Position aus.
+
+- 10 zieht zehn Pixel von seiner Position ab.
+
+Dadurch bewegt sich Tom nach links.
+
+Anschließend wird überprüft, ob Tom Jerry gefangen hat.`
+},
+
+{
+    title: "Hintergrund bewegen",
+
+    code: `function myBackgroundMove() {
+
+    clearInterval(myClock);
+
+    myClock = setInterval(function() {
+
+        myGlobalX -= 2;
+
+        document.getElementById('myBody').style.backgroundPosition =
+        myGlobalX + 'px 0px';
+
+    }, 50);
+}`,
+
+    explanation: `Diese Funktion bewegt den Hintergrund automatisch nach links.
+
+clearInterval stoppt zuerst einen bereits laufenden Timer.
+
+setInterval führt den Code regelmäßig aus.
+
+myGlobalX -= 2 zieht bei jedem Durchlauf zwei Pixel ab.
+
+backgroundPosition verändert die Position des Hintergrundbildes.
+
+50 bedeutet, dass die Funktion alle 50 Millisekunden ausgeführt wird.
+
+Dadurch entsteht eine fließende Bewegung.`
+},
+
+{
+    title: "Spiel neu starten",
+
+    code: `<button onclick="location.reload()">
+Restart Game
+</button>`,
+
+    explanation: `location.reload() lädt die gesamte Webseite neu.
+
+Dadurch werden alle Variablen wieder auf ihre ursprünglichen Werte gesetzt.
+
+Tom und Jerry werden auf ihre Startpositionen zurückgesetzt.
+
+Auch der Punktestand beginnt wieder bei null.`
+},
+
+{
+    title: "Zusammenfassung",
+
+    code: `HTML = Aufbau
+CSS = Design
+JavaScript = Funktionen`,
+
+    explanation: `Herzlichen Glückwunsch!
+
+Du hast jetzt die wichtigsten Teile deines Tom-und-Jerry-Spiels kennengelernt.
+
+HTML erstellt die Elemente der Webseite.
+
+CSS bestimmt das Aussehen und die Position der Elemente.
+
+JavaScript sorgt dafür, dass das Spiel funktioniert.
+
+Du weißt jetzt, wie man Figuren bewegt, Punkte zählt, Kollisionen erkennt und einen Hintergrund animiert.`
+}
+
+];
+
+// Aktueller Schritt
+
+let currentStep = 0;
+
+
+// Schritt anzeigen
+
+function showStep() {
+
+    document.getElementById('title').innerHTML =
+    steps[currentStep].title;
+
+    document.getElementById('code').innerText =
+    steps[currentStep].code;
+
+    document.getElementById('explanation').innerText =
+    steps[currentStep].explanation;
+
+    document.getElementById('progress').innerHTML =
+    'Schritt ' + (currentStep + 1) +
+    ' von ' + steps.length;
+
+    document.getElementById('back').disabled =
+    currentStep === 0;
+
+    document.getElementById('next').innerHTML =
+    currentStep === steps.length - 1
+    ? 'Von vorne beginnen'
+    : 'Weiter';
+}
+
+
+// Nächster Schritt
+
+function nextStep() {
+
+    if (currentStep < steps.length - 1) {
+
+        currentStep++;
+
+    } else {
+
+        currentStep = 0;
+
+    }
+
+    showStep();
+}
+
+
+// Vorheriger Schritt
+
+function previousStep() {
+
+    if (currentStep > 0) {
+
+        currentStep--;
+
+    }
+
+    showStep();
+}
+
+
+// Ersten Schritt anzeigen
+
+showStep();
+
+</script>
+
+</body>
+</html>
