@@ -1,0 +1,294 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>t2a19-json-Pascal.html</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background-color: #f2f2f2;
+        }
+
+        .box {
+            display: inline-block;
+            width: 40%;
+            min-height: 250px;
+            margin: 10px;
+            padding: 15px;
+            border: 2px solid black;
+            border-radius: 10px;
+            background-color: white;
+            vertical-align: top;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        pre {
+            text-align: left;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+            background-color: #eee;
+            padding: 10px;
+        }
+
+        select {
+            padding: 8px;
+            margin: 10px;
+        }
+
+        .explanation {
+            background-color: lightblue;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1 align="center">t2a19-json-fred.html</h1>
+
+<script>
+
+async function fetchData(url, boxNumber) {
+
+    try {
+
+        const response = await fetch(url);
+        const data = await response.json();
+
+        console.log(data);
+
+        const myJson = JSON.stringify(data, null, 2);
+
+        document.getElementById('myDiv' + boxNumber).innerHTML = "";
+
+        const pre = document.createElement("pre");
+        pre.textContent = myJson;
+
+        document.getElementById('myDiv' + boxNumber).appendChild(pre);
+
+        let imageUrl =
+            data.image ||
+            data.message ||
+            data.url ||
+            (Array.isArray(data) ? data[0]?.url : null);
+
+        if (imageUrl) {
+
+            const img = document.createElement("img");
+            img.src = imageUrl;
+            img.alt = "Animal picture";
+
+            document.getElementById('myDiv' + boxNumber).appendChild(img);
+
+        }
+
+    } catch (error) {
+
+        document.getElementById('myDiv' + boxNumber).textContent =
+            "Error loading data.";
+
+        console.log(error);
+
+    }
+
+}
+
+</script>
+
+
+<!-- BOX 1 -->
+
+<div class="box">
+
+    <h2>1. Random Fox</h2>
+
+    <select onchange="fetchData(this.value, 1)">
+        <option value="">Select animal</option>
+        <option value="https://randomfox.ca/floof/">Random Fox</option>
+    </select>
+
+    <div id="myDiv1">...</div>
+
+</div>
+
+
+<!-- BOX 2 -->
+
+<div class="box">
+
+    <h2>2. Random Dog</h2>
+
+    <select onchange="fetchData(this.value, 2)">
+        <option value="">Select animal</option>
+        <option value="https://dog.ceo/api/breeds/image/random">Random Dog</option>
+    </select>
+
+    <div id="myDiv2">...</div>
+
+</div>
+
+
+<!-- BOX 3 -->
+
+<div class="box">
+
+    <h2>3. Random Cat</h2>
+
+    <select onchange="fetchData(this.value, 3)">
+        <option value="">Select animal</option>
+        <option value="https://api.thecatapi.com/v1/images/search">Random Cat</option>
+    </select>
+
+    <div id="myDiv3">...</div>
+
+</div>
+
+
+<!-- BOX 4 -->
+
+<div class="box">
+
+    <h2>4. Random Duck</h2>
+
+    <select onchange="fetchData(this.value, 4)">
+        <option value="">Select animal</option>
+        <option value="https://random-d.uk/api/v2/random">Random Duck</option>
+    </select>
+
+    <div id="myDiv4">...</div>
+
+</div>
+
+
+<!-- BOX 5 -->
+
+<div class="box">
+
+    <h2>5. Lion</h2>
+
+    <select onchange="fetchData(this.value, 5)">
+        <option value="">Select animal</option>
+        <option value="https://en.wikipedia.org/api/rest_v1/page/summary/Lion">Lion</option>
+    </select>
+
+    <div id="myDiv5">...</div>
+
+</div>
+
+
+<!-- BOX 6 -->
+
+<div class="box">
+
+    <h2>6. Elephant</h2>
+
+    <select onchange="fetchData(this.value, 6)">
+        <option value="">Select animal</option>
+        <option value="https://en.wikipedia.org/api/rest_v1/page/summary/Elephant">Elephant</option>
+    </select>
+
+    <div id="myDiv6">...</div>
+
+</div>
+
+
+<!-- BOX 7 -->
+
+<div class="box">
+
+    <h2>7. Penguin</h2>
+
+    <select onchange="fetchData(this.value, 7)">
+        <option value="">Select animal</option>
+        <option value="https://en.wikipedia.org/api/rest_v1/page/summary/Penguin">Penguin</option>
+    </select>
+
+    <div id="myDiv7">...</div>
+
+</div>
+
+
+<!-- BOX 8 -->
+
+<div class="box">
+
+    <h2>8. Panda</h2>
+
+    <select onchange="fetchData(this.value, 8)">
+        <option value="">Select animal</option>
+        <option value="https://en.wikipedia.org/api/rest_v1/page/summary/Giant_panda">Panda</option>
+    </select>
+
+    <div id="myDiv8">...</div>
+
+</div>
+
+
+<!-- JSON RESEARCH -->
+
+<div class="explanation">
+
+    <h1>What is JSON?</h1>
+
+    <p>
+        JSON stands for JavaScript Object Notation.
+        It is used to save and share data between websites
+        and programs.
+    </p>
+
+    <h2>How does JSON work?</h2>
+
+    <p>
+        JSON uses keys and values to organize information.
+        A key is the name of the information and the value
+        is the information itself.
+    </p>
+
+    <h2>Example of JSON</h2>
+
+    <pre>
+{
+    "animal": "Fox",
+    "name": "Red Fox",
+    "type": "Wild Animal",
+    "image": "fox.jpg"
+}
+    </pre>
+
+    <h2>Why do we use JSON?</h2>
+
+    <p>
+        JSON makes it easier to share information
+        between different programs and websites.
+    </p>
+
+    <h2>What is an API?</h2>
+
+    <p>
+        An API lets websites get information from other
+        websites. In this project I use APIs to get
+        pictures and information about different animals.
+    </p>
+
+    <h2>What does fetch() do?</h2>
+
+    <p>
+        The fetch() function gets data from an API.
+        response.json() reads the data and
+        JSON.stringify() makes it easier to read.
+    </p>
+
+</div>
+
+</body>
+</html>
