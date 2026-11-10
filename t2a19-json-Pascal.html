@@ -21,11 +21,14 @@
             border-radius: 10px;
             background-color: white;
             vertical-align: top;
+            box-sizing: border-box;
         }
 
         img {
             max-width: 100%;
-            height: auto;
+            width: 300px;
+            max-height: 250px;
+            object-fit: contain;
             border-radius: 10px;
             margin-top: 10px;
         }
@@ -49,53 +52,119 @@
             margin: 20px;
             border-radius: 10px;
         }
+
+        @media (max-width: 600px) {
+            .box {
+                width: 90%;
+            }
+        }
     </style>
 </head>
 
 <body>
 
-<h1 align="center">t2a19-json-fred.html</h1>
+<h1>t2a19-json-Pascal.html</h1>
 
 <script>
 
 async function fetchData(url, boxNumber) {
 
+    const output = document.getElementById("myDiv" + boxNumber);
+
+    output.innerHTML = "Loading...";
+
     try {
 
+        // Get data from API
         const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error("HTTP Error: " + response.status);
+        }
+
+        // Convert response into JSON
         const data = await response.json();
 
         console.log(data);
 
-        const myJson = JSON.stringify(data, null, 2);
+        // Clear old content
+        output.innerHTML = "";
 
-        document.getElementById('myDiv' + boxNumber).innerHTML = "";
-
+        // Show JSON data
         const pre = document.createElement("pre");
-        pre.textContent = myJson;
 
-        document.getElementById('myDiv' + boxNumber).appendChild(pre);
+        pre.textContent = JSON.stringify(data, null, 2);
 
-        let imageUrl =
-            data.image ||
-            data.message ||
-            data.url ||
-            (Array.isArray(data) ? data[0]?.url : null);
+        output.appendChild(pre);
 
+        // Find image URL
+        let imageUrl = null;
+
+        if (boxNumber === 1) {
+            imageUrl = data.image;
+        }
+
+        else if (boxNumber === 2) {
+            imageUrl = data.message;
+        }
+
+        else if (boxNumber === 3) {
+            imageUrl = data[0]?.url;
+        }
+
+        else if (boxNumber >= 4) {
+            imageUrl =
+                data.thumbnail?.source ||
+                data.originalimage?.source;
+        }
+
+        // Display image
         if (imageUrl) {
 
             const img = document.createElement("img");
+
             img.src = imageUrl;
             img.alt = "Animal picture";
 
-            document.getElementById('myDiv' + boxNumber).appendChild(img);
+            img.onerror = function() {
+
+                this.remove();
+
+                const errorMessage = document.createElement("p");
+
+                errorMessage.textContent =
+                    "Image could not be loaded.";
+
+                output.appendChild(errorMessage);
+
+            };
+
+            output.appendChild(img);
 
         }
 
-    } catch (error) {
+        else {
 
-        document.getElementById('myDiv' + boxNumber).textContent =
-            "Error loading data.";
+            const message = document.createElement("p");
+
+            message.textContent = "No image found.";
+
+            output.appendChild(message);
+
+        }
+
+    }
+
+    catch (error) {
+
+        output.innerHTML = "";
+
+        const errorMessage = document.createElement("p");
+
+        errorMessage.textContent =
+            "Error loading data: " + error.message;
+
+        output.appendChild(errorMessage);
 
         console.log(error);
 
@@ -112,7 +181,7 @@ async function fetchData(url, boxNumber) {
 
     <h2>1. Random Fox</h2>
 
-    <select onchange="fetchData(this.value, 1)">
+    <select onchange="if(this.value) fetchData(this.value, 1)">
         <option value="">Select animal</option>
         <option value="https://randomfox.ca/floof/">Random Fox</option>
     </select>
@@ -128,9 +197,11 @@ async function fetchData(url, boxNumber) {
 
     <h2>2. Random Dog</h2>
 
-    <select onchange="fetchData(this.value, 2)">
+    <select onchange="if(this.value) fetchData(this.value, 2)">
         <option value="">Select animal</option>
-        <option value="https://dog.ceo/api/breeds/image/random">Random Dog</option>
+        <option value="https://dog.ceo/api/breeds/image/random">
+            Random Dog
+        </option>
     </select>
 
     <div id="myDiv2">...</div>
@@ -144,9 +215,11 @@ async function fetchData(url, boxNumber) {
 
     <h2>3. Random Cat</h2>
 
-    <select onchange="fetchData(this.value, 3)">
+    <select onchange="if(this.value) fetchData(this.value, 3)">
         <option value="">Select animal</option>
-        <option value="https://api.thecatapi.com/v1/images/search">Random Cat</option>
+        <option value="https://api.thecatapi.com/v1/images/search">
+            Random Cat
+        </option>
     </select>
 
     <div id="myDiv3">...</div>
@@ -158,11 +231,13 @@ async function fetchData(url, boxNumber) {
 
 <div class="box">
 
-    <h2>4. Random Duck</h2>
+    <h2>4. Horse</h2>
 
-    <select onchange="fetchData(this.value, 4)">
+    <select onchange="if(this.value) fetchData(this.value, 4)">
         <option value="">Select animal</option>
-        <option value="https://random-d.uk/api/v2/random">Random Duck</option>
+        <option value="https://en.wikipedia.org/api/rest_v1/page/summary/Horse">
+            Horse
+        </option>
     </select>
 
     <div id="myDiv4">...</div>
@@ -176,9 +251,11 @@ async function fetchData(url, boxNumber) {
 
     <h2>5. Lion</h2>
 
-    <select onchange="fetchData(this.value, 5)">
+    <select onchange="if(this.value) fetchData(this.value, 5)">
         <option value="">Select animal</option>
-        <option value="https://en.wikipedia.org/api/rest_v1/page/summary/Lion">Lion</option>
+        <option value="https://en.wikipedia.org/api/rest_v1/page/summary/Lion">
+            Lion
+        </option>
     </select>
 
     <div id="myDiv5">...</div>
@@ -192,9 +269,11 @@ async function fetchData(url, boxNumber) {
 
     <h2>6. Elephant</h2>
 
-    <select onchange="fetchData(this.value, 6)">
+    <select onchange="if(this.value) fetchData(this.value, 6)">
         <option value="">Select animal</option>
-        <option value="https://en.wikipedia.org/api/rest_v1/page/summary/Elephant">Elephant</option>
+        <option value="https://en.wikipedia.org/api/rest_v1/page/summary/Elephant">
+            Elephant
+        </option>
     </select>
 
     <div id="myDiv6">...</div>
@@ -208,9 +287,11 @@ async function fetchData(url, boxNumber) {
 
     <h2>7. Penguin</h2>
 
-    <select onchange="fetchData(this.value, 7)">
+    <select onchange="if(this.value) fetchData(this.value, 7)">
         <option value="">Select animal</option>
-        <option value="https://en.wikipedia.org/api/rest_v1/page/summary/Penguin">Penguin</option>
+        <option value="https://en.wikipedia.org/api/rest_v1/page/summary/Penguin">
+            Penguin
+        </option>
     </select>
 
     <div id="myDiv7">...</div>
@@ -224,9 +305,11 @@ async function fetchData(url, boxNumber) {
 
     <h2>8. Panda</h2>
 
-    <select onchange="fetchData(this.value, 8)">
+    <select onchange="if(this.value) fetchData(this.value, 8)">
         <option value="">Select animal</option>
-        <option value="https://en.wikipedia.org/api/rest_v1/page/summary/Giant_panda">Panda</option>
+        <option value="https://en.wikipedia.org/api/rest_v1/page/summary/Giant_panda">
+            Panda
+        </option>
     </select>
 
     <div id="myDiv8">...</div>
