@@ -1,48 +1,61 @@
-<h1 align="center">T2A20-sort-Pascal.html</h1>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>t2a20-sort-m.html</title>
+</head>
+<body>
+
+<h1 align="center">t2a20-sort-m.html</h1>
 
 <script>
     let myMax = 3; // 52 when working
     let myCards = new Array(myMax);
-
-    function randomCards() {
-        for (let myLoop = 0; myLoop < myMax; myLoop++) {
-            myCards[myLoop] = Math.floor(Math.random() * 10);
-        }
-        showCards();
-    }
-
-    function showCards() {
-        let myTemp = '';
-
-        for (let myLoop = 0; myLoop < myMax; myLoop++) {
-            myTemp += myLoop + ' = ' + myCards[myLoop] + '<br>';
-        }
-
-        document.getElementById('myDiv01').innerHTML = myTemp;
-    }
-
-    function sortCards() {
-        // Bubble Sort
-        for (let i = 0; i < myMax - 1; i++) {
-            for (let j = 0; j < myMax - 1 - i; j++) {
-
-                if (myCards[j] > myCards[j + 1]) {
-                    let myTemp = myCards[j];
-                    myCards[j] = myCards[j + 1];
-                    myCards[j + 1] = myTemp;
-                }
-
-            }
-        }
-
-        showCards();
-    }
 </script>
 
-<input type="button" value="Set Random" onclick="randomCards()">
+<input type="button" value="Set Random" onclick="
+    for (let myLoop = 0; myLoop < myMax; myLoop++) {
+        myCards[myLoop] = Math.floor(Math.random() * 10);
+    }
+    document.getElementById('myDiv01').innerHTML = 'Numbers have been created!';
+">
 
-<input type="button" value="Show" onclick="showCards()">
+<input type="button" value="Show" onclick="
+    let myTemp = '';
+    for (let myLoop = 0; myLoop < myMax; myLoop++) {
+        myTemp += myLoop + ' = ' + myCards[myLoop] + '<br>';
+    }
+    document.getElementById('myDiv01').innerHTML = myTemp;
+">
 
-<input type="button" value="Sort" onclick="sortCards()">
+<input type="button" value="Sort" onclick="
+    let myTemp = 0;
 
-<div id="myDiv01"></div> 
+    for (let myLoop2 = 0; myLoop2 < myMax - 1; myLoop2++) {
+        for (let myLoop = 0; myLoop < myMax - 1 - myLoop2; myLoop++) {
+
+            if (myCards[myLoop] > myCards[myLoop + 1]) {
+
+                myTemp = myCards[myLoop];
+
+                myCards[myLoop] = myCards[myLoop + 1];
+
+                myCards[myLoop + 1] = myTemp;
+            }
+        }
+    }
+
+    let myShow = '';
+    for (let myLoop = 0; myLoop < myMax; myLoop++) {
+        myShow += myLoop + ' = ' + myCards[myLoop] + '<br>';
+    }
+
+    document.getElementById('myDiv01').innerHTML = myShow;
+">
+
+<div id="myDiv01">
+   First, click on Set Random.
+</div>
+
+</body>
+</html>
