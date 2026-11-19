@@ -1,0 +1,149 @@
+
+<h2>t2a22-local-storage-Pascal.html</h2>
+
+Use local storage to make a to-do list
+
+<body onload="{
+   myStorage = localStorage.getItem('myStoredText')
+   if(myStorage  != null){
+      document.getElementById('myText1').value = myStorage 
+    }
+}">
+
+<body onunload="{
+   localstorage.setItem('myStoredText',document.getElementById('myText1').value)
+}">   
+
+Text example: <input id="myText1" type=text size=70 value="" placeholder="Write here to store"><br>
+
+<input type="button" value="Store Text" onClick="{
+   localStorage.setItem('myStoredText', document.getElementById('myText1').value)
+   alert(document.getElementById('myText1').value + ' \nHas been stored')
+   document.getElementById('myText1').value = ''
+}">
+
+<input type="button" value="Retrieve Text" onClick="{
+   document.getElementById('myText1').value = localStorage.getItem('myStoredText')
+}">
+
+
+
+
+
+
+<h2>My To-Do List</h2>
+
+<body onload="showTasks()">
+
+<input id="myTask" type="text" placeholder="Write a new task">
+
+<input type="button" value="Add Task" onclick="addTask()">
+
+<br><br>
+
+<input id="mySearch" type="text" placeholder="Search tasks" oninput="showTasks()">
+
+<h3>My Tasks:</h3>
+
+<ul id="myList"></ul>
+
+<p id="myCount"></p>
+
+<input type="button" value="Delete All Tasks" onclick="deleteAll()">
+
+<script>
+
+let myTasks = JSON.parse(localStorage.getItem('myTasks')) || [];
+
+function addTask() {
+
+   let myText = document.getElementById('myTask').value;
+
+   if (myText == '') {
+      alert('Write something first!');
+      return;
+   }
+
+   myTasks.push({
+      text: myText,
+      done: false
+   });
+
+   document.getElementById('myTask').value = '';
+
+   saveTasks();
+   showTasks();
+}
+
+function saveTasks() {
+   localStorage.setItem('myTasks', JSON.stringify(myTasks));
+}
+
+function showTasks() {
+
+   let myList = document.getElementById('myList');
+   let mySearch = document.getElementById('mySearch').value.toLowerCase();
+
+   myList.innerHTML = '';
+
+   for (let i = 0; i < myTasks.length; i++) {
+
+      if (!myTasks[i].text.toLowerCase().includes(mySearch)) {
+         continue;
+      }
+
+      let myItem = document.createElement('li');
+
+      let myCheck = document.createElement('input');
+      myCheck.type = 'checkbox';
+      myCheck.checked = myTasks[i].done;
+
+      myCheck.onchange = function() {
+         myTasks[i].done = myCheck.checked;
+         saveTasks();
+         showTasks();
+      };
+
+      let myText = document.createElement('span');
+      myText.textContent = myTasks[i].text;
+
+      if (myTasks[i].done) {
+         myText.style.textDecoration = 'line-through';
+      }
+
+      let myDelete = document.createElement('button');
+      myDelete.textContent = 'Delete';
+
+      myDelete.onclick = function() {
+         myTasks.splice(i, 1);
+         saveTasks();
+         showTasks();
+      };
+
+      myItem.appendChild(myCheck);
+      myItem.appendChild(myText);
+      myItem.appendChild(myDelete);
+
+      myList.appendChild(myItem);
+   }
+
+   let myDone = myTasks.filter(task => task.done).length;
+
+   document.getElementById('myCount').innerHTML =
+      'Total tasks: ' + myTasks.length +
+      '<br>Completed: ' + myDone +
+      '<br>Still to do: ' + (myTasks.length - myDone);
+}
+
+function deleteAll() {
+
+   if (confirm('Delete all tasks?')) {
+      myTasks = [];
+      saveTasks();
+      showTasks();
+   }
+}
+
+</script>
+
+</body>
