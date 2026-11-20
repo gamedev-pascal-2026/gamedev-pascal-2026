@@ -1,0 +1,185 @@
+
+<!-- ORIGINAL CODE - UNCHANGED -->
+
+<h2 align="center">t2a23-canvas by Pascal</h2>
+
+Click the button to draw basic shapes, then ask AI to help you add more!
+
+<br><br>
+
+<input type="button" value="Draw Basic Shapes" onclick="{
+
+    // 1. Clear the canvas first
+    myContext.clearRect(0, 0, myCanvas.width, myCanvas.height);
+
+    // 2. Draw a simple Line
+    myContext.beginPath();
+    myContext.lineWidth = 3;
+    myContext.strokeStyle = 'black';
+    myContext.moveTo(20, 20);
+    myContext.lineTo(150, 20);
+    myContext.stroke();
+
+    // 3. Draw a solid Rectangle
+    myContext.fillStyle = 'blue';
+    myContext.fillRect(30, 50, 100, 60);
+
+    // 4. Draw a Circle
+    myContext.beginPath();
+    myContext.lineWidth = 5;
+    myContext.strokeStyle = 'green';
+    myContext.arc(220, 80, 40, 0, 2 * Math.PI);
+    myContext.stroke();
+
+    // 5. Write some Text
+    myContext.fillStyle = 'red';
+    myContext.font = '24px Arial';
+    myContext.fillText('Hello World!', 30, 180);
+
+}">
+
+<br><br>
+
+<!-- Original Canvas -->
+<canvas id="myCoolTag" width="500" height="300"
+style="border: 1px solid #000000;"></canvas>
+
+<script>
+// Set up global variables
+let myCanvas = document.getElementById('myCoolTag');
+let myContext = myCanvas.getContext('2d');
+</script>
+
+
+<!-- BLUE DIVIDER -->
+
+<hr style="border: 0; height: 4px; background-color: #2563eb; margin: 35px 0;">
+
+
+<!-- CORRECTED AND EXTENDED CODE -->
+
+<h2 align="center">t2a23-canvas by Pascal - Extra Shapes</h2>
+
+Click the button to draw basic shapes and more!
+
+<br><br>
+
+<input type="button" value="Draw More Shapes" onclick="{
+
+    // Clear second canvas
+    myContext2.clearRect(0, 0, myCanvas2.width, myCanvas2.height);
+
+    // 1. Black Line
+    myContext2.beginPath();
+    myContext2.lineWidth = 3;
+    myContext2.strokeStyle = 'black';
+    myContext2.moveTo(20, 20);
+    myContext2.lineTo(150, 20);
+    myContext2.stroke();
+
+    // 2. Blue Rectangle
+    myContext2.fillStyle = 'blue';
+    myContext2.fillRect(30, 50, 100, 60);
+
+    // 3. Green Circle
+    myContext2.beginPath();
+    myContext2.lineWidth = 5;
+    myContext2.strokeStyle = 'green';
+    myContext2.arc(220, 80, 40, 0, 2 * Math.PI);
+    myContext2.stroke();
+
+    // 4. Red Text
+    myContext2.fillStyle = 'red';
+    myContext2.font = '24px Arial';
+    myContext2.fillText('Hello World!', 30, 180);
+
+    // 5. Yellow Triangle
+    myContext2.beginPath();
+    myContext2.fillStyle = 'yellow';
+    myContext2.moveTo(300, 30);
+    myContext2.lineTo(350, 110);
+    myContext2.lineTo(250, 110);
+    myContext2.closePath();
+    myContext2.fill();
+
+    // 6. Purple Rectangle
+    myContext2.fillStyle = 'purple';
+    myContext2.fillRect(380, 30, 90, 60);
+
+    // 7. Orange Circle
+    myContext2.beginPath();
+    myContext2.fillStyle = 'orange';
+    myContext2.arc(100, 250, 30, 0, 2 * Math.PI);
+    myContext2.fill();
+
+    // 8. Pink Star
+    myContext2.beginPath();
+    myContext2.fillStyle = 'hotpink';
+    myContext2.moveTo(220, 200);
+    myContext2.lineTo(230, 225);
+    myContext2.lineTo(255, 225);
+    myContext2.lineTo(235, 242);
+    myContext2.lineTo(245, 270);
+    myContext2.lineTo(220, 252);
+    myContext2.lineTo(195, 270);
+    myContext2.lineTo(205, 242);
+    myContext2.lineTo(185, 225);
+    myContext2.lineTo(210, 225);
+    myContext2.closePath();
+    myContext2.fill();
+
+    // 9. Brown House
+    myContext2.fillStyle = 'brown';
+    myContext2.fillRect(350, 190, 100, 80);
+
+    // House Roof
+    myContext2.beginPath();
+    myContext2.fillStyle = 'red';
+    myContext2.moveTo(340, 190);
+    myContext2.lineTo(400, 140);
+    myContext2.lineTo(460, 190);
+    myContext2.closePath();
+    myContext2.fill();
+
+    // House Door
+    myContext2.fillStyle = 'black';
+    myContext2.fillRect(385, 225, 25, 45);
+
+    // 10. Smiley Face
+    myContext2.beginPath();
+    myContext2.fillStyle = 'gold';
+    myContext2.arc(160, 150, 35, 0, 2 * Math.PI);
+    myContext2.fill();
+
+    // Eyes
+    myContext2.fillStyle = 'black';
+    myContext2.beginPath();
+    myContext2.arc(148, 140, 4, 0, 2 * Math.PI);
+    myContext2.arc(172, 140, 4, 0, 2 * Math.PI);
+    myContext2.fill();
+
+    // Smile
+    myContext2.beginPath();
+    myContext2.lineWidth = 3;
+    myContext2.strokeStyle = 'black';
+    myContext2.arc(160, 150, 20, 0, Math.PI);
+    myContext2.stroke();
+
+    // 11. Extra Text
+    myContext2.fillStyle = 'darkblue';
+    myContext2.font = '18px Arial';
+    myContext2.fillText('Canvas is Awesome!', 20, 295);
+
+}">
+
+<br><br>
+
+<!-- Second Canvas -->
+<canvas id="myCoolTag2" width="500" height="320"
+style="border: 2px solid black;"></canvas>
+
+<script>
+// Set up second canvas variables
+let myCanvas2 = document.getElementById('myCoolTag2');
+let myContext2 = myCanvas2.getContext('2d');
+</script>
