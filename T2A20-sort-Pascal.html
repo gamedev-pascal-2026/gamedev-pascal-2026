@@ -1,4 +1,6 @@
 
+<!-- ORIGINAL CODE - UNCHANGED -->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,6 +58,189 @@
 <div id="myDiv01">
    First, click on Set Random.
 </div>
+
+</body>
+</html>
+
+
+<!-- BLUE DIVIDER -->
+
+<hr style="border: 0; height: 4px; background-color: #2563eb; margin: 35px 0;">
+
+
+<!-- CORRECTED AND EXTENDED CODE -->
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>t2a20-sort-Pascal-Improved</title>
+
+    <style>
+        .sort-container {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f4f8;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        .sort-container h2 {
+            color: #243b53;
+        }
+
+        .sort-container button {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            margin: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .sort-container button:hover {
+            background-color: #1d4ed8;
+        }
+
+        #myDiv02 {
+            background-color: white;
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px #0002;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .sorted-number {
+            color: #2563eb;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="sort-container">
+
+    <h2>Bubble Sort - Improved Version</h2>
+
+    <p>
+        Create random numbers and sort them from smallest to largest!
+    </p>
+
+    <button onclick="setRandom02()">Set Random</button>
+
+    <button onclick="showNumbers02()">Show</button>
+
+    <button onclick="sortNumbers02()">Sort</button>
+
+    <button onclick="resetNumbers02()">Reset</button>
+
+    <div id="myDiv02">
+        First, click on Set Random.
+    </div>
+
+</div>
+
+<script>
+
+    // 1. Set the maximum number of cards
+    let myMax02 = 10;
+
+    // 2. Create an empty array
+    let myCards02 = [];
+
+    // 3. Create random numbers
+    function setRandom02() {
+
+        myCards02 = [];
+
+        for (let myLoop = 0; myLoop < myMax02; myLoop++) {
+
+            myCards02[myLoop] = Math.floor(Math.random() * 100);
+
+        }
+
+        document.getElementById('myDiv02').innerHTML =
+            'Random numbers have been created!';
+    }
+
+
+    // 4. Show all numbers
+    function showNumbers02() {
+
+        if (myCards02.length === 0) {
+
+            alert('Please click Set Random first!');
+
+            return;
+        }
+
+        let myTemp02 = '';
+
+        for (let myLoop = 0; myLoop < myMax02; myLoop++) {
+
+            myTemp02 += '<span class="sorted-number">' +
+                myLoop + ' = ' + myCards02[myLoop] +
+                '</span><br>';
+
+        }
+
+        document.getElementById('myDiv02').innerHTML = myTemp02;
+    }
+
+
+    // 5. Sort numbers using Bubble Sort
+    function sortNumbers02() {
+
+        if (myCards02.length === 0) {
+
+            alert('Please click Set Random first!');
+
+            return;
+        }
+
+        let myTemp02 = 0;
+
+        // Compare neighboring numbers
+        for (let myLoop2 = 0; myLoop2 < myMax02 - 1; myLoop2++) {
+
+            for (let myLoop = 0; myLoop < myMax02 - 1 - myLoop2; myLoop++) {
+
+                // Swap numbers if they are in the wrong order
+                if (myCards02[myLoop] > myCards02[myLoop + 1]) {
+
+                    myTemp02 = myCards02[myLoop];
+
+                    myCards02[myLoop] = myCards02[myLoop + 1];
+
+                    myCards02[myLoop + 1] = myTemp02;
+
+                }
+            }
+        }
+
+        // Display sorted numbers
+        showNumbers02();
+
+    }
+
+
+    // 6. Reset all numbers
+    function resetNumbers02() {
+
+        myCards02 = [];
+
+        document.getElementById('myDiv02').innerHTML =
+            'Reset complete! Click Set Random to start again.';
+
+    }
+
+</script>
 
 </body>
 </html>
